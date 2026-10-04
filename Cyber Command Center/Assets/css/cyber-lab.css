@@ -1,0 +1,272 @@
+/*=========================================================
+    PAGE CYBER LAB - CYBER COMMAND CENTER
+    Cette section simule un environnement de développement sécurisé
+    avec un éditeur de code, des langages et un terminal.
+=========================================================*/
+
+.cyber-lab-page {
+    min-height: 100vh;
+    padding: 4rem 4rem 6rem;
+    background:
+        radial-gradient(circle at top left, rgba(0, 217, 255, 0.16), transparent 20%),
+        linear-gradient(180deg, rgba(2, 4, 10, 1), rgba(5, 12, 19, 1));
+}
+
+.lab-shell {
+    background: rgba(10, 16, 27, 0.9);
+    border: 1px solid rgba(87, 156, 255, 0.24);
+    border-radius: 2rem;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.lab-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: rgba(12, 20, 32, 0.96);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lang-tabs {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.lang-btn {
+    border: 1px solid rgba(121, 169, 255, 0.2);
+    background: rgba(17, 27, 41, 0.8);
+    color: var(--text-secondary);
+    border-radius: 0.9rem;
+    padding: 0.9rem 1.5rem;
+    font-family: var(--font-code);
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lang-btn.active {
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.14), rgba(85, 120, 255, 0.18));
+    border-color: rgba(0, 217, 255, 0.6);
+    color: var(--text-white);
+    box-shadow: 0 0 18px rgba(0, 217, 255, 0.12);
+}
+
+.window-controls {
+    display: flex;
+    gap: 0.9rem;
+}
+
+.dot {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+}
+
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.lab-body {
+    display: grid;
+    grid-template-columns: 22rem minmax(0, 1.5fr) 28rem;
+    min-height: 72vh;
+}
+
+.workspace-panel,
+.terminal-panel {
+    background: rgba(8, 14, 24, 0.92);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.panel-header,
+.terminal-header,
+.editor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.panel-header span,
+.terminal-header span,
+.editor-header span {
+    font-family: var(--font-code);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.file-list {
+    list-style: none;
+    padding: 1.6rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.file-list li {
+    padding: 1rem 1.2rem;
+    border-radius: 1rem;
+    color: var(--text-secondary);
+    background: rgba(17, 26, 39, 0.2);
+    border: 1px solid transparent;
+    font-size: 1.4rem;
+    font-family: var(--font-code);
+}
+
+.file-list li.active {
+    background: rgba(0, 217, 255, 0.08);
+    border-color: rgba(0, 217, 255, 0.26);
+    color: var(--text-white);
+}
+
+.stats-panel {
+    padding: 1.6rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.mini-stat {
+    padding: 1.2rem 1.4rem;
+    border: 1px solid rgba(104, 150, 196, 0.18);
+    border-radius: 1rem;
+    background: rgba(14, 25, 38, 0.8);
+}
+
+.mini-label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-code);
+    text-transform: uppercase;
+}
+
+.mini-stat strong {
+    color: var(--text-white);
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.editor-panel {
+    background: rgba(9, 17, 27, 0.96);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.run-btn {
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(77, 127, 255, 0.2));
+    color: var(--text-white);
+    border: 1px solid rgba(0, 217, 255, 0.4);
+    padding: 0.8rem 1.4rem;
+    border-radius: 0.9rem;
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.run-btn:hover,
+.run-btn:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 0 18px rgba(0, 217, 255, 0.2);
+    outline: none;
+}
+
+#code-editor {
+    width: 100%;
+    height: calc(72vh - 72px);
+    background: rgba(2, 8, 18, 0.86);
+    border: none;
+    resize: none;
+    color: #dff7ff;
+    font-size: 1.5rem;
+    line-height: 1.8;
+    padding: 2rem 1.8rem;
+    font-family: var(--font-code);
+    tab-size: 2;
+}
+
+#code-editor:focus {
+    outline: none;
+}
+
+.terminal-panel {
+    background: rgba(6, 12, 20, 0.96);
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    color: var(--success-light);
+    font-family: var(--font-code);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+#terminal-output {
+    padding: 2rem 1.8rem;
+    color: var(--success-light);
+    font-family: var(--font-code);
+    font-size: 1.35rem;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    min-height: calc(72vh - 72px);
+}
+
+@media (max-width: 1100px) {
+    .cyber-lab-page {
+        padding: 3rem 2rem 4rem;
+    }
+
+    .lab-body {
+        grid-template-columns: 1fr;
+    }
+
+    .workspace-panel,
+    .editor-panel,
+    .terminal-panel {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    #code-editor,
+    #terminal-output {
+        height: 26rem;
+        min-height: 26rem;
+    }
+}
+
+@media (max-width: 720px) {
+    .cyber-lab-page {
+        padding: 2rem 1.5rem 3rem;
+    }
+
+    .lang-tabs {
+        width: 100%;
+    }
+
+    .lang-btn {
+        flex: 1 1 30%;
+        min-width: 0;
+    }
+
+    .lab-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+    }
+}
