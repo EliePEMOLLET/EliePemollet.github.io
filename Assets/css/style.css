@@ -1,0 +1,27 @@
+/*=========================================================
+    CYBER COMMAND CENTER
+    DESIGN SYSTEM V1.0
+    Author : Elie Pemollet
+=========================================================*/
+
+html {
+    font-size: 62.5%;
+}
+
+
+/*=========================================================
+    FLEX UTILITIES
+=========================================================*/
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
